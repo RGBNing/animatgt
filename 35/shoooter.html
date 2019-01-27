@@ -1,0 +1,63 @@
+<DOCTYPE html>
+        <html>
+            <head>
+                <style>
+                #canvas {
+                border: 2px solid black
+                }
+                </style>
+                <script>
+                var W = 600;
+                var H = 400;
+                var FPS = 30;
+        
+                function Enemy(){
+                    this.x = W/4;
+                    this.y = 20;
+                    this.dx = 1;
+                    this.w = 50;
+                    this.h = 30;
+
+                    this.update = function(){
+                        this.x += this.dx;
+                        if (this.x + this.w > W || this.x<0){
+                            this.dx*=-1
+                        }
+
+                    }
+
+                    this.draw = function(ctx) {
+                        ctx.fillStyle='red';
+                        ctx.fillRect(this.x, this.y, this.w, this.h);
+                    }
+                }
+                function onLoad(){
+                    var canvas = document.getElementById('canvas');
+                    var ctx = canvas.getContext('2d');
+
+                    var enemy = new Enemy();
+
+                    
+                    function draw(){
+                        ctx.fillStyle = "white";
+                        ctx.fillRect(0, 0, W, H);
+                        enemy.update();
+                        enemy.draw(ctx);
+                        
+                        
+                    }
+                    setInterval(draw, 1/FPS);
+                }
+        
+                
+                </script>
+            </head>
+            <body>
+                <canvas id = "canvas" width="600" height = "400">
+
+                </canvas>
+                <script>
+                        onLoad()
+                    </script>
+            </body>
+        </html>

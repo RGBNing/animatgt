@@ -1,0 +1,65 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <style>
+        #canvas {
+        border: 2px solid black
+        }
+        </style>
+        <script>
+        var W = 600;
+        var H = 400;
+        var FPS = 30;
+
+        function onLoad(){
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            
+            var sx = 250;
+            
+            function draw(){
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, W, H);
+                
+                ctx.fillStyle = "green";
+                ctx.fillRect(100, 200, 100, 100);
+                ctx.beginPath();
+
+                    //крыыша
+                ctx.fillStyle = "red";
+                ctx.moveTo(150, 120);
+                ctx.lineTo(100, 200);
+                ctx.lineTo(200, 200);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeColor='black';
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+
+                ctx.fillStyle = "yellow";
+                ctx.fillRect(170, 120, 10, 45);
+                //крууг
+                ctx.fillStyle = "yellow";
+                ctx.beginPath();
+                ctx.arc(sx , 50,20, 0, Math.PI * 2, true);
+                ctx.closePath();
+                ctx.fill();
+
+                sx +=2;
+                if (sx > W)
+                sx = 0
+            }
+        setInterval(draw, 1/FPS);
+        }
+
+        
+        </script>
+    </head>
+    <body>
+        <canvas width="600" height="400" id="canvas" >
+        </canvas>
+        <script>
+            onLoad()
+        </script>
+    </body>
+</html>
